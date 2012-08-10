@@ -24,6 +24,10 @@ module Exchanger
         Nokogiri::XML::Builder.new do |xml|
           xml.send("soap:Envelope", "xmlns:soap" => NS["soap"], "xmlns:t" => NS["t"], "xmlns:xsi" => NS["xsi"], "xmlns:xsd" => NS["xsd"]) do
             xml.send("soap:Body") do
+              
+              hash = {"xmlns" => NS["m"]}
+              hash.merge!({"SendMeetingInvitations" => send_meeting_invitations}) unless send_meeting_invitations.nil?
+              
               xml.CreateItem("xmlns" => NS["m"]) do
                 xml.SavedItemFolderId do
                   if folder_id.is_a?(Symbol)
