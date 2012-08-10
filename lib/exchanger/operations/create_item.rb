@@ -11,13 +11,14 @@ module Exchanger
   # http://msdn.microsoft.com/en-us/library/aa563797.aspx
   class CreateItem < Operation
     class Request < Operation::Request
-      attr_accessor :folder_id, :email_address, :items
+      attr_accessor :folder_id, :email_address, :items, :send_meeting_invitations
 
       # Reset request options to defaults.
       def reset
         @folder_id = :contacts
         @email_address = nil
         @items = []
+        @send_meeting_invitations = nil
       end
 
       def to_xml
@@ -26,9 +27,9 @@ module Exchanger
             xml.send("soap:Body") do
               
               hash = {"xmlns" => NS["m"]}
-              hash.merge!({"SendMeetingInvitations" => send_meeting_invitations}) unless send_meeting_invitations.nil?
-              
-              xml.CreateItem("xmlns" => NS["m"]) do
+              hash.merge!({"SendMeetingInvitations" => send_meeting_invitations}) if !send_meeting_invitations.nil?
+
+              xml.CreateItem(hash) do
                 xml.SavedItemFolderId do
                   if folder_id.is_a?(Symbol)
                     xml.send("t:DistinguishedFolderId", "Id" => folder_id) do
