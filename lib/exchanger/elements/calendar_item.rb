@@ -11,8 +11,6 @@ module Exchanger
     element :date_time_stamp, :type => Time
     # Single and Occurrence only
     element :start, :type => Time
-    element :start_time_zone, :type => StartTimeZone
-    element :end_time_zone, :type => EndTimeZone
     element :end, :type => Time
     # Occurrence only
     element :original_start, :type => Time
@@ -40,6 +38,8 @@ module Exchanger
     # Duration
     element :duration
     element :time_zone
+    element :start_time_zone, :type => StartTimeZone
+    element :end_time_zone, :type => EndTimeZone
     # Appointment
     element :appointment_reply_time, :type => Time
     element :appointment_sequence_number, :type => Integer
