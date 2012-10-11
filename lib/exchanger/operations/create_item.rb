@@ -24,6 +24,9 @@ module Exchanger
       def to_xml
         Nokogiri::XML::Builder.new do |xml|
           xml.send("soap:Envelope", "xmlns:soap" => NS["soap"], "xmlns:t" => NS["t"], "xmlns:xsi" => NS["xsi"], "xmlns:xsd" => NS["xsd"]) do
+            xml.send("soap:Header") do
+              xml.send("t:RequestServerVersion", "Version" => "Exchange2010_SP2")
+            end
             xml.send("soap:Body") do
               
               hash = {"xmlns" => NS["m"]}

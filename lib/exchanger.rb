@@ -28,6 +28,8 @@ require "exchanger/elements/complete_name"
 # Entry elements
 require "exchanger/elements/entry"
 require "exchanger/elements/email_address"
+require "exchanger/elements/start_time_zone"
+require "exchanger/elements/end_time_zone"
 require "exchanger/elements/phone_number"
 require "exchanger/elements/physical_address"
 require "exchanger/elements/im_address"

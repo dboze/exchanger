@@ -11,6 +11,8 @@ module Exchanger
     element :date_time_stamp, :type => Time
     # Single and Occurrence only
     element :start, :type => Time
+    element :start_time_zone, :type => StartTimeZone
+    element :end_time_zone, :type => EndTimeZone
     element :end, :type => Time
     # Occurrence only
     element :original_start, :type => Time
@@ -58,7 +60,7 @@ module Exchanger
     
     def create()
       
-      CreateItem.run(:folder_id => parent_folder_id.id, :items => [self], :send_meeting_invitations => "SendToNone")
+      CreateItem.run(:folder_id => :calendar, :items => [self], :send_meeting_invitations => "SendToNone")
       
     end
     
